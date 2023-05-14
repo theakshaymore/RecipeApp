@@ -1,67 +1,42 @@
-<!-- Navbar -->
-<nav class="container navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <img src="../../assets/logo.png" alt="" srcset="" />
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item ms-3">
-          <a class="nav-link" aria-current="page">Home</a>
-        </li>
-        <li class="nav-item ms-1">
-          <a class="nav-link">Account</a>
-        </li>
-      </ul>
-      <button class="btn btn-warning">Login/Register</button>
-    </div>
-  </div>
-</nav>
-
+<app-navbar></app-navbar>
 <div class="container my-5">
   <!-- Intro page -->
   <div class="container">
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-md-6">
         <img
           class="img-fluid rounded-3"
           src="https://images.pexels.com/photos/6275111/pexels-photo-6275111.jpeg"
           alt="Food image"
         />
       </div>
-      <div class="col-sm-6">
-        <h1>Recipe APP</h1>
-        <p>Some Description</p>
-        <a class="btn btn-warning">Explore</a>
+      <div
+        class="col-md-6 d-flex flex-column justify-content-center align-items-center text-center"
+      >
+        <h1 class="fw-bold display-4 mb-4">Recipe APP</h1>
+        <p class="fs-5 mb-4">Some Description</p>
+        <a class="btn btn-warning rounded-pill px-4 py-2">Explore</a>
       </div>
     </div>
   </div>
-
   <!-- Recipe-List -->
   <div class="container">
-    <div class="row row-cols-md-3 row-gap-5 mt-5">
+    <div class="row row-cols-md-3 g-4 mt-5">
       <div *ngFor="let r of recipes">
-        <div class="card" style="width: 18rem">
+        <div class="card">
           <img
-            class="card-img-top"
+            class="card-img-top rounded-top"
             src="{{ r.image }}"
             alt="Card image cap"
-            max-width="100%"
-            max-height="100%"
           />
-          <div class="card-body">
-            <h5 class="card-title">{{ r.name }}</h5>
-            <p class="card-text">{{ r.likes }}</p>
-            <a class="card-link btn btn-warning" (click)="viewRecipeDetails(r)"
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title">{{ r.name }}</h5>
+              <p class="card-text">{{ r.likes }}</p>
+            </div>
+            <a
+              class="card-link btn btn-warning rounded-pill px-4 py-2"
+              (click)="viewRecipeDetails(r.recipeid)"
               >Read</a
             >
           </div>

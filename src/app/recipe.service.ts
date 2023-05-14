@@ -9,7 +9,15 @@ export class RecipeService {
     //
   }
 
+  //FOR USER
+
+  //FOR RECIPE
   getAllRecipesFromDB() {
     return this.httpclient.get('/app/recipe/list');
   }
+  getRecipeByIdFromDB(recipeId: any) {
+    return this.httpclient.get('/app/recipe/list/' + recipeId);
+  }
+
+  //FOR COMMENT
 }

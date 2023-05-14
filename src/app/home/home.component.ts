@@ -24,7 +24,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  viewRecipeDetails(recipe: any) {
-    this.router.navigate(['/recipedetails'], { state: { data: recipe } });
+  viewRecipeDetails(recipeid: any) {
+    this.router.navigate(['/recipedetails'], { state: { data: recipeid } });
+    // this.router.navigate(['/recipedetails'], { state: recipeid });
   }
 }
