@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RecipeService } from '../recipe.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-reipedetails',
   templateUrl: './reipedetails.component.html',
@@ -15,11 +16,14 @@ export class ReipedetailsComponent implements OnInit {
     private recipeService: RecipeService,
     private router: Router,
     private route: ActivatedRoute
+
+    
   ) {}
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.recipeId = history.state.data;
       console.log(this.recipeId);
+ 
     });
     // this.recipeId = this.route.snapshot.firstChild?.data['state'];
     console.log(this.recipeId); // { myData: 'Hello World' }
@@ -34,4 +38,5 @@ export class ReipedetailsComponent implements OnInit {
         this.recipe = data;
       });
   }
+
 }

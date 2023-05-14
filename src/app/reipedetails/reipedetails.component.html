@@ -8,19 +8,16 @@
           <h1 class="card-title">{{ recipe.name }}</h1>
           <hr />
           <h4>Ingredients:</h4>
-          <p class="card-text">{{ recipe.ingredients }}</p>
+          <p class="card-title">{{ recipe.ingredients }}</p>
           <hr />
-          <h4>Instructions:</h4>
-          <p class="card-text">{{ recipe.instructions }}</p>
-          <hr />
-          <p class="card-text">
-            <small class="text-muted"
-              >Preparation time: {{ recipe.preparationtime }}</small
-            >
-          </p>
-          <hr />
+          <h4>Description:</h4>
           <p class="card-text">{{ recipe.description }}</p>
           <hr />
+          <p class="card-text">
+            <small class="text-muted">Preparation time: {{ recipe.preparationtime }}</small
+            >
+          </p>
+        
           <div class="d-flex justify-content-between">
             <p class="card-text">
               <small class="text-muted">Likes: {{ recipe.likes }}</small>
