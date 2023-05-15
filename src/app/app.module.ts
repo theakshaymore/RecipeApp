@@ -10,10 +10,19 @@ import { ReipedetailsComponent } from './reipedetails/reipedetails.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { AddrecipeComponent } from './addrecipe/addrecipe.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomeComponent, ReipedetailsComponent, NotFoundComponent, RecipeComponent, AddrecipeComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    HomeComponent,
+    ReipedetailsComponent,
+    NotFoundComponent,
+    RecipeComponent,
+    AddrecipeComponent,
+  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

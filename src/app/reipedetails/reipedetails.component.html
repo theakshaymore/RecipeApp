@@ -1,66 +1,126 @@
 <app-navbar></app-navbar>
+
 <div class="container my-5">
   <div class="row">
-    <div class="col-md-8 mx-auto">
+    <div class="col-md-12">
       <div class="card border-0 shadow">
-        <img src="{{ recipe.image }}" alt="Recipe Image" class="card-img-top" />
-        <div class="card-body">
-          <h1 class="card-title">{{ recipe.name }}</h1>
-          <hr />
-          <h4>Ingredients:</h4>
-          <p class="card-text">{{ recipe.ingredients }}</p>
-          <hr />
-          <h4>Instructions:</h4>
-          <p class="card-text">{{ recipe.instructions }}</p>
-          <hr />
-          <p class="card-text">
-            <small class="text-muted"
-              >Preparation time: {{ recipe.preparationtime }}</small
-            >
-          </p>
-          <hr />
-          <p class="card-text">{{ recipe.description }}</p>
-          <hr />
-          <div class="d-flex justify-content-between">
+        <div class="row">
+          <div class="col-md-6">
+            <img [src]="recipe.image" alt="Recipe Image" class="card-img-top" />
+          </div>
+          <div class="col-md-6 p-4">
+            <h1 class="card-title">{{ recipe.name }}</h1>
             <p class="card-text">
-              <small class="text-muted">Likes: {{ recipe.likes }}</small>
+              <small class="text-muted"
+                >Preparation time: {{ recipe.preparationtime }}</small
+              >
             </p>
-            <div>
-              <button type="button" class="btn btn-outline-primary btn-sm mr-2">
-                Like
-              </button>
-            </div>
+            <h4>Ingredients:</h4>
+            <p class="card-text">{{ recipe.ingredients }}</p>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-md-12 ms-2">
+            <h4>Instructions:</h4>
+            <p class="card-text">{{ recipe.instructions }}</p>
+          </div>
+        </div>
+        <p class="card-text mx-2">{{ recipe.description }}</p>
+        <hr />
+        <div class="d-flex justify-content-between mx-2">
+          <p class="card-text">
+            <small class="text-muted">Likes: {{ recipe.likes }}</small>
+          </p>
+          <div>
+            <button type="button" class="btn btn-outline-primary btn-sm mr-2">
+              Like
+            </button>
           </div>
         </div>
       </div>
-      <div class="card border-0 shadow my-4">
+    </div>
+  </div>
+
+  <!-- Add comment -->
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <div class="card border-0 shadow">
         <div class="card-header bg-white">
           <h3 class="text-muted mb-0">Comments</h3>
         </div>
         <div class="card-body">
-          <form>
+          <form
+            #commentForm="ngForm"
+            (ngSubmit)="addComment(commentForm.value)"
+          >
             <div class="form-group">
-              <textarea
+              <input
+                type="text"
                 class="form-control"
                 rows="3"
                 placeholder="Add a comment"
-              ></textarea>
+                #text="ngModel"
+                name="text"
+                ngModel
+              />
             </div>
-            <button type="submit" class="btn btn-primary">Comment</button>
+            <button [disabled]="!commentForm.valid" class="btn btn-warning">
+              Comment
+            </button>
           </form>
         </div>
+      </div>
+    </div>
+  </div>
+  <!-- Comments list -->
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <div class="card border-0 shadow">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <div class="d-flex justify-content-between align-items-center">
-              <div>Comment 1</div>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div class="d-flex justify-content-between align-items-center">
-              <div>Comment 2</div>
+          <li *ngFor="let comment of comments" class="list-group-item">
+            <div class="d-flex align-items-start">
+              <img
+                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                alt="Profile Image"
+                class="rounded-circle me-2"
+                width="30"
+                height="30"
+              />
+
+              <div class="flex-grow-1">
+                <!-- <div class="d-flex align-items-center">
+                  <h5 class="me-2 form-text" style="font-size: 14px">
+                    @{{ userName }}
+                  </h5>
+                </div> -->
+                <p class="mb-0 mt-2" style="font-size: 16px">
+                  {{ comment.text?.toString() }}
+                </p>
+              </div>
             </div>
           </li>
         </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast message -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div
+      class="toast align-items-center text-bg-primary text-white border-0"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
+      <div class="d-flex">
+        <div class="toast-body text-white">Comment added successfully</div>
+        <button
+          type="button"
+          class="btn-close btn-close-white me-2 m-auto text-white"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
       </div>
     </div>
   </div>

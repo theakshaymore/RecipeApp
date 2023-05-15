@@ -31,5 +31,16 @@ export class RecipeService {
   search(name: any) {
     return this.httpclient.get('/app/recipe/list' + name);
   }
+
   //FOR COMMENT
+  getCommentsByRecipeIdFromDB(recipeId: any) {
+    return this.httpclient.get('/app/comment/list/recipename/' + recipeId);
+  }
+
+  getUserNameByRecipeIdFromDB(recipeId: any) {
+    return this.httpclient.get('/app/comment/list/username/' + recipeId);
+  }
+  addCommentInDB(values: any) {
+    return this.httpclient.post('app/comment/list', values);
+  }
 }
