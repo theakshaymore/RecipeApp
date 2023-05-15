@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="container my-5">
   <!-- Intro page -->
-  <div class="container">
+  <div class="container mt-5">
     <div class="row">
       <div class="col-md-6">
         <img
@@ -15,12 +15,16 @@
       >
         <h1 class="fw-bold display-4 mb-4">Recipe APP</h1>
         <p class="fs-5 mb-4">Some Description</p>
-        <a class="btn btn-warning rounded-pill px-4 py-2">Explore</a>
+        <a
+          class="btn btn-warning rounded-pill px-4 py-2"
+          routerLink="recipelist"
+          >Explore</a
+        >
       </div>
     </div>
   </div>
   <!-- Recipe-List -->
-  <div class="container">
+  <!-- <div class="container">
     <div class="row row-cols-md-3 g-4 mt-5">
       <div *ngFor="let r of recipes">
         <div class="card">
@@ -43,5 +47,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

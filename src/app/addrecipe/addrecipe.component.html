@@ -1,0 +1,92 @@
+<!-- <button
+  (click)="addRecipe()"
+  class="btn btn-secondary btn-md"
+  style="padding: 8px; width: 10vw; margin-left: 43vw"
+>
+  Add New Recipe</button
+><br /><br />
+<form
+  *ngIf="showForm"
+  (submit)="addNewRecipe()"
+  style="width: 50vw; margin: auto; margin-bottom: 10px; font-size: 14px"
+>
+  <h2 style="text-align: center">Share Your Recipes</h2>
+  <label>RecipeId</label>
+  <input
+    [(ngModel)]="rec.recipeid"
+    name="recipeid"
+    type="text"
+    class="form-control"
+    ngModel
+  /><br />
+
+  <label>RecipeName</label>
+  <input
+    [(ngModel)]="rec.name"
+    name="name"
+    type="text"
+    class="form-control"
+    ngModel
+  /><br />
+
+  <label>Ingredients</label>
+  <input
+    [(ngModel)]="rec.ingredients"
+    name="ingredients"
+    type="text"
+    style="height: 200px"
+    class="form-control"
+    ngModel
+  /><br />
+
+  <label>Description</label>
+  <input
+    [(ngModel)]="rec.description"
+    name="description"
+    type="text"
+    style="height: 200px"
+    class="form-control"
+    ngModel
+  /><br />
+
+  <label>preparationTime</label>
+  <input
+    [(ngModel)]="rec.preparationtime"
+    name="preparationtime"
+    type="text"
+    class="form-control"
+    ngModel
+  /><br />
+
+  <label>Images</label>
+  <input
+    [(ngModel)]="rec.images"
+    name="images"
+    type="file"
+    class="form-control"
+    onchange="console.log(event.target.files)"
+    ngModel
+  /><br />
+
+  <label>UserId</label>
+  <input
+    [(ngModel)]="rec.userid"
+    name="userid"
+    type="text"
+    class="form-control"
+    ngModel
+  /><br />
+
+  <button type="submit" class="btn btn-primary btn-md" style="padding: 8px">
+    Share Recipe
+  </button>
+
+  <button
+    type="button"
+    class="btn btn-danger"
+    (click)="showForm = false"
+    style="padding: 8px; margin-left: 5px"
+  >
+    Cancel
+  </button>
+</form> -->

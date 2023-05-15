@@ -22,7 +22,6 @@ export class ReipedetailsComponent implements OnInit {
       console.log(this.recipeId);
     });
     // this.recipeId = this.route.snapshot.firstChild?.data['state'];
-    console.log(this.recipeId); // { myData: 'Hello World' }
 
     this.recipe = this.getRecipeByIdFromService(this.recipeId);
   }
