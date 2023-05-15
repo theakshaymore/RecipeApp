@@ -1,0 +1,26 @@
+
+<table class="table table-bordered table-condensed table-striped table-hover">
+    <thead>
+        <tr class="bg-primary">
+            <th>UserId</th>
+            <th>UserName</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Actions</th>
+           
+        </tr>
+    </thead>
+    <tbody class="bg-info">
+        <tr *ngFor="let u of user">
+
+            <td>{{u.userid}}</td>
+            <td>{{u.username}}</td>
+            <td>{{u.email}}</td>
+            <td>{{u.password}}</td>
+            <td>
+                <button (click)="delbyid(u.userid)" class="btn btn-danger">Delete</button>
+            
+            </td>
+        </tr>
+    </tbody>
+</table>
