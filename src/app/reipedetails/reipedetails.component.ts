@@ -13,6 +13,7 @@ export class ReipedetailsComponent implements OnInit {
   comments: any;
   userId: any = 2;
   userName: any;
+  likes: any;
 
   constructor(
     private recipeService: RecipeService,
@@ -27,7 +28,6 @@ export class ReipedetailsComponent implements OnInit {
       this.getCommentsByRecipeIdFromService();
       this.userName = this.getUserNameByRecipeIdFromService(this.recipeId);
     });
-    // this.recipeId = this.route.snapshot.firstChild?.data['state'];
   }
 
   private showToastMessage() {
@@ -41,16 +41,26 @@ export class ReipedetailsComponent implements OnInit {
 
   //FOR RECIPE
   getRecipeByIdFromService(recipeId: any) {
-    return this.recipeService
-      .getRecipeByIdFromDB(recipeId)
-      .subscribe((data: any) => {
-        this.recipe = data;
-      });
+    this.recipeService.getRecipeByIdFromDB(recipeId).subscribe((data: any) => {
+      this.recipe = data;
+    });
+  }
+
+  addLike(likes: any, recipeId: any) {
+    likes = likes + 1;
+    this.recipeService.addLikeInDB(likes, recipeId).subscribe(
+      () => {
+        console.log('Like added successfully');
+      },
+      (error) => {
+        console.error('Error adding like:', error);
+      }
+    );
   }
 
   //FOR COMMENT
   getCommentsByRecipeIdFromService() {
-    this.comments = this.recipeService
+    this.recipeService
       .getCommentsByRecipeIdFromDB(this.recipeId)
       .subscribe((data: any) => {
         this.comments = data;

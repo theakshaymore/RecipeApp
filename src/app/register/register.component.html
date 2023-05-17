@@ -1,0 +1,166 @@
+<div class="container mt-5">
+  <h1 class="text-center mt-2">Register</h1>
+  <form #registerForm="ngForm" (ngSubmit)="save()">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        name="username"
+        required
+        [(ngModel)]="username"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.controls['username']?.invalid &&
+            registerForm.controls['username']?.touched
+        }"
+      />
+      <div
+        *ngIf="
+          registerForm.controls['username']?.invalid &&
+          registerForm.controls['username']?.touched
+        "
+        class="invalid-feedback"
+      >
+        Username is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        name="email"
+        required
+        [(ngModel)]="email"
+        class="form-control"
+        id="email"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.controls['email']?.invalid &&
+            registerForm.controls['email']?.touched
+        }"
+      />
+      <div
+        *ngIf="
+          registerForm.controls['email']?.invalid &&
+          registerForm.controls['email']?.touched
+        "
+        class="invalid-feedback"
+      >
+        Email is required and must be a valid email address.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="mobile">Mobile</label>
+      <input
+        type="text"
+        name="mobile"
+        required
+        [(ngModel)]="mobile"
+        class="form-control"
+        id="mobile"
+        maxlength="10"
+        minlength="10"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.controls['mobile']?.invalid &&
+            registerForm.controls['mobile']?.touched
+        }"
+      />
+      <div
+        *ngIf="
+          registerForm.controls['mobile']?.invalid &&
+          registerForm.controls['mobile']?.touched
+        "
+        class="invalid-feedback"
+      >
+        Mobile is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <select
+        name="gender"
+        required
+        [(ngModel)]="gender"
+        class="form-select"
+        id="gender"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.controls['gender']?.invalid &&
+            registerForm.controls['gender']?.touched
+        }"
+      >
+        <option value="" selected disabled>Select gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Others">Others</option>
+      </select>
+      <div
+        *ngIf="
+          registerForm.controls['gender']?.invalid &&
+          registerForm.controls['gender']?.touched
+        "
+        class="invalid-feedback"
+      >
+        Gender is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        required
+        minlength="6"
+        [(ngModel)]="password"
+        class="form-control"
+        id="password"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.controls['password']?.invalid &&
+            registerForm.controls['password']?.touched
+        }"
+      />
+      <div
+        *ngIf="
+          registerForm.controls['password']?.invalid &&
+          registerForm.controls['password']?.touched
+        "
+        class="invalid-feedback"
+      >
+        Password is required and must have at least 6 characters.
+      </div>
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-warning col-12 mt-2">Register</button>
+  </form>
+</div>
+
+<!-- Toast message -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div
+    class="toast align-items-center text-bg-primary text-white border-0"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div class="d-flex">
+      <div class="toast-body text-white">
+        Registered successfully!
+        <a class="text-white" routerLink="/login">Login here</a>
+      </div>
+      <button
+        type="button"
+        class="btn-close btn-close-white me-2 m-auto text-white"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+      ></button>
+    </div>
+  </div>
+</div>

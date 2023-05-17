@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./recipe.component.css'],
 })
 export class RecipeComponent {
+  userId: any;
   recipe: any;
   showForm: boolean = false;
   rec: any = {};
@@ -19,6 +20,8 @@ export class RecipeComponent {
 
   constructor(private recser: RecipeService, private router: Router) {}
   ngOnInit(): void {
+    this.userId = this.recser.getUserId();
+    console.log('ID= ' + this.userId);
     this.getRecipeList();
   }
 
@@ -68,10 +71,12 @@ export class RecipeComponent {
     });
   }
   delbyid(recipeid: any) {
-    return this.recser.deleteRecipe(recipeid).subscribe((data: any) => {
-      console.log(data);
-      this.ngOnInit();
-    });
+    return this.recser
+      .deleteRecipeByRecipeIdFromDB(recipeid)
+      .subscribe((data: any) => {
+        console.log(data);
+        this.ngOnInit();
+      });
   }
 
   editRecipe(Recipe: any) {

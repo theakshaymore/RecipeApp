@@ -1,15 +1,69 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+export interface User {
+  userid: any;
+  username: any;
+  email: any;
+  mobile: any;
+  gender: any;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class RecipeService {
+  private userId: any;
+  isUserLoggedIn: boolean;
+
   constructor(private httpclient: HttpClient) {
-    //
+    this.isUserLoggedIn = false;
+  }
+
+  setUserId(userId: any) {
+    this.userId = userId;
+  }
+
+  getUserId() {
+    return this.userId;
+  }
+  setIsUserLoggedIn() {
+    this.isUserLoggedIn = true;
+  }
+
+  getIsUserLoggedIn() {
+    return this.isUserLoggedIn;
   }
 
   //FOR USER
+  getAllUsersInfo() {
+    return this.httpclient.get('/app/user/list');
+  }
+  deleteUser(id: any) {
+    return this.httpclient.delete('/app/user/list/' + id);
+  }
+  deleteUserAndRecipeByUserId(userId: any) {
+    return this.httpclient.delete('/app/user/delete/userid/' + userId);
+  }
+  SearchUser(name: any) {
+    return this.httpclient.get('/app/user/list/username/' + name);
+  }
+  updateUser(user: any) {
+    return this.httpclient.put('/app/user/list/', user);
+  }
+  getUserByEmailAndPasswordFromDB(email: any, password: any) {
+    return this.httpclient.get(
+      '/app/user/list/login/' + email + '/' + password
+    );
+  }
+
+  getUserByIdFromDB(userId: any) {
+    return this.httpclient.get('/app/user/list/' + userId);
+  }
+
+  updateUserById(user: any) {
+    return this.httpclient.put('/app/user/list', user);
+  }
 
   //FOR RECIPE
   getAllRecipesFromDB() {
@@ -18,10 +72,15 @@ export class RecipeService {
   getRecipeByIdFromDB(recipeId: any) {
     return this.httpclient.get('/app/recipe/list/' + recipeId);
   }
-  deleteRecipe(recipeid: any) {
+  getRecipeByNameFromDB(name: any) {
+    return this.httpclient.get('/app/recipe/list/name/' + name);
+  }
+  getRecipeByUserIdFromDB(userId: any) {
+    return this.httpclient.get('/app/recipe/list/userid/' + userId);
+  }
+  deleteRecipeByRecipeIdFromDB(recipeid: any) {
     return this.httpclient.delete('/app/recipe/delete/' + recipeid);
   }
-
   updateRecipe(recipe: any) {
     return this.httpclient.put('/app/recipe/save/', recipe);
   }
@@ -30,6 +89,10 @@ export class RecipeService {
   }
   search(name: any) {
     return this.httpclient.get('/app/recipe/list' + name);
+  }
+  addLikeInDB(likes: any, recipeId: any) {
+    const payload = { likes: likes };
+    return this.httpclient.put(`/app/recipe/like/${recipeId}`, payload);
   }
 
   //FOR COMMENT

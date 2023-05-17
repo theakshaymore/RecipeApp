@@ -1,0 +1,172 @@
+<div class="container" style="text-align: center">
+  <h2 class="text-start mt-2">Recipe List</h2>
+  <div class="search-container text-start mt-3">
+    <input
+      class="search rounded border-1 p-1"
+      type="text"
+      [(ngModel)]="searchname"
+      placeholder="enter recipe name"
+    />
+    <button class="btn btn-warning search-btn ms-2" (click)="searchRecipe()">
+      Search
+    </button>
+  </div>
+</div>
+<br />
+<div class="container mt-2">
+  <table
+    class="table table-bordered table-stripped table-condensed table-hover"
+  >
+    <thead class="" style="background: antiquewhite">
+      <tr>
+        <th>Recipe Id</th>
+        <th>Recipe Name</th>
+        <!-- <th>Preparation Time</th> -->
+        <th>Likes</th>
+        <th>User Id</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody class="" style="background: cornsilk">
+      <tr *ngFor="let r of recipes">
+        <td>{{ r.recipeid }}</td>
+        <td>{{ r.name | uppercase }}</td>
+        <!-- <td>{{ r.preparationtime }}</td> -->
+        <td>{{ r.likes }}</td>
+        <td>{{ r.userid }}</td>
+        <td>
+          <button
+            (click)="deleteRecipe(r.recipeid)"
+            class="btn btn-danger btn-md"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Update Recipe Details
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #updateForm="ngForm" (ngSubmit)="updateRecipe()">
+          <div class="form-group">
+            <label for="name"> Recipe Id: </label>
+            <input
+              type="text"
+              disabled
+              #recipeid
+              [(ngModel)]="recipeToUpdate.recipeid"
+              name="recipeid"
+              id="recipeid"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name"> Name: </label>
+            <input
+              type="text"
+              #name
+              [(ngModel)]="recipeToUpdate.name"
+              name="name"
+              id="name"
+              class="form-control"
+              placeholder="User name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name"> Ingredients: </label>
+            <input
+              type="text"
+              #ingredients
+              [(ngModel)]="recipeToUpdate.ingredients"
+              name="ingredients"
+              id="ingredients"
+              class="form-control"
+              placeholder="Email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name"> Description: </label>
+            <input
+              type="text"
+              #description
+              [(ngModel)]="recipeToUpdate.description"
+              name="description"
+              id="description"
+              class="form-control"
+              placeholder="Email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name"> Image: </label>
+            <input
+              type="text"
+              #image
+              [(ngModel)]="recipeToUpdate.image"
+              name="image"
+              id="image"
+              class="form-control"
+              placeholder="Email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name"> Likes: </label>
+            <input
+              type="text"
+              #likes
+              [(ngModel)]="recipeToUpdate.likes"
+              name="likes"
+              id="likes"
+              class="form-control"
+              placeholder="Email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name"> User Id: </label>
+            <input
+              type="text"
+              #userid
+              [(ngModel)]="recipeToUpdate.userid"
+              name="userid"
+              id="userid"
+              class="form-control"
+              placeholder="Email"
+            />
+          </div>
+          <br />
+          <div class="mb-3">
+            <input
+              type="submit"
+              value="Update"
+              class="btn btn-primary w-100"
+              data-bs-dismiss="modal"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

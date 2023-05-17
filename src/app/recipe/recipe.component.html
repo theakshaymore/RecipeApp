@@ -1,9 +1,7 @@
-<app-navbar></app-navbar>
-
 <div class="container mb-5">
-  <div class="row row-cols-md-3 g-4 row-gap-5 mt-5">
-    <div *ngFor="let r of recipe">
-      <div class="card">
+  <div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
+    <div *ngFor="let r of recipe" class="col">
+      <div class="card h-100">
         <img
           class="card-img-top rounded-top"
           src="{{ r.image }}"
@@ -11,14 +9,17 @@
         />
         <div class="card-body d-flex flex-column justify-content-between">
           <div>
-            <h5 class="card-title">{{ r.name }}</h5>
-            <p class="card-text">{{ r.likes }}</p>
+            <h5 class="card-title mb-3">{{ r.name }}</h5>
+            <p class="card-text btn">
+              <i class="bi bi-heart text-danger">{{ r.likes }}</i>
+            </p>
           </div>
           <a
-            class="card-link btn btn-warning rounded-pill px-4 py-2"
+            class="card-link btn btn-warning rounded-pill px-4 py-2 align-self-end"
             (click)="viewRecipeDetails(r.recipeid)"
-            >Read</a
           >
+            Read More
+          </a>
         </div>
       </div>
     </div>
