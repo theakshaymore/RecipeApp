@@ -60,7 +60,7 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>PreparationTime</th>
+        <th>Image</th>
         <th>likes</th>
         <th>Edit</th>
         <th>Delete</th>
@@ -69,7 +69,9 @@
     <tbody>
       <tr *ngFor="let recipe of recipeList">
         <td>{{ recipe.name }}</td>
-        <td>{{ recipe.preparationtime }}</td>
+        <td>
+          <img src="{{ recipe.image }}" alt="image" class="recipe-image" />
+        </td>
         <td>{{ recipe.likes }}</td>
         <td>
           <button

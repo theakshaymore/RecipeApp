@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { RecipeService } from '../recipe.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-addrecipe',
@@ -8,15 +9,25 @@ import { RecipeService } from '../recipe.service';
 })
 export class AddrecipeComponent implements OnInit {
   recipe: any;
-  showForm: boolean = false;
   rec: any = {};
   recupd: any;
 
-  constructor(private recipeService: RecipeService) {}
-  ngOnInit(): void {}
+  constructor(
+    private recipeService: RecipeService,
+    private elementRef: ElementRef,
+    private router: Router
+  ) {}
+  ngOnInit(): void {
+    this.rec.userid = this.recipeService.getUserId();
+  }
 
-  addRecipe() {
-    this.showForm = true;
+  private showToastMessage() {
+    const toastElement: HTMLElement =
+      this.elementRef.nativeElement.querySelector('.toast');
+    toastElement.classList.add('show');
+    setTimeout(() => {
+      toastElement.classList.remove('show');
+    }, 5000);
   }
 
   addNewRecipe() {
@@ -24,6 +35,7 @@ export class AddrecipeComponent implements OnInit {
       console.log(data);
       this.rec = {};
       this.ngOnInit();
+      this.showToastMessage();
     });
   }
 }

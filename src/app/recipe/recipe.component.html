@@ -1,5 +1,8 @@
 <div class="container mb-5">
-  <div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
+  <button class="btn btn-warning mt-5" routerLink="/addrecipe">
+    Add Recipe
+  </button>
+  <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
     <div *ngFor="let r of recipe" class="col">
       <div class="card h-100">
         <img

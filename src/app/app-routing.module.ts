@@ -11,6 +11,7 @@ import { UsersComponent } from './users/users.component';
 import { RecipetabeComponent } from './recipetabe/recipetabe.component';
 import { AdminComponent } from './admin/admin.component';
 import { RegisterComponent } from './register/register.component';
+import { AddrecipeComponent } from './addrecipe/addrecipe.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,6 +25,11 @@ const routes: Routes = [
   { path: 'users', component: UsersComponent },
   { path: 'admin', canActivate: [AuthGuard], component: AdminComponent },
   { path: 'register', component: RegisterComponent },
+  {
+    path: 'addrecipe',
+    canActivate: [AuthGuard],
+    component: AddrecipeComponent,
+  },
 ];
 
 @NgModule({

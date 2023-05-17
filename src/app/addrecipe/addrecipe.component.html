@@ -1,26 +1,11 @@
-<!-- <button
-  (click)="addRecipe()"
-  class="btn btn-secondary btn-md"
-  style="padding: 8px; width: 10vw; margin-left: 43vw"
->
-  Add New Recipe</button
-><br /><br />
 <form
-  *ngIf="showForm"
-  (submit)="addNewRecipe()"
+  #addRecipeForm="ngForm"
+  (ngSubmit)="addNewRecipe()"
   style="width: 50vw; margin: auto; margin-bottom: 10px; font-size: 14px"
 >
-  <h2 style="text-align: center">Share Your Recipes</h2>
-  <label>RecipeId</label>
-  <input
-    [(ngModel)]="rec.recipeid"
-    name="recipeid"
-    type="text"
-    class="form-control"
-    ngModel
-  /><br />
+  <h2 style="text-align: center">Share Your Recipe</h2>
 
-  <label>RecipeName</label>
+  <label class="mt-1">Recipe Name</label>
   <input
     [(ngModel)]="rec.name"
     name="name"
@@ -29,27 +14,25 @@
     ngModel
   /><br />
 
-  <label>Ingredients</label>
-  <input
+  <label class="mt-1" for="ingredients">Ingredients</label>
+  <textarea
     [(ngModel)]="rec.ingredients"
     name="ingredients"
-    type="text"
-    style="height: 200px"
+    id="ingredients"
+    rows="8"
     class="form-control"
-    ngModel
-  /><br />
+  ></textarea>
 
-  <label>Description</label>
-  <input
+  <label class="mt-1">Description</label>
+  <textarea
     [(ngModel)]="rec.description"
     name="description"
-    type="text"
-    style="height: 200px"
+    rows="8"
     class="form-control"
-    ngModel
-  /><br />
+  ></textarea>
+  <br />
 
-  <label>preparationTime</label>
+  <label class="mt-1">preparationTime</label>
   <input
     [(ngModel)]="rec.preparationtime"
     name="preparationtime"
@@ -58,35 +41,47 @@
     ngModel
   /><br />
 
-  <label>Images</label>
+  <label class="mt-1">Images</label>
   <input
     [(ngModel)]="rec.images"
     name="images"
-    type="file"
+    type="text"
     class="form-control"
-    onchange="console.log(event.target.files)"
+    placeholder="enter image url"
     ngModel
   /><br />
 
-  <label>UserId</label>
   <input
     [(ngModel)]="rec.userid"
     name="userid"
     type="text"
     class="form-control"
     ngModel
-  /><br />
+    hidden
+  />
+  <!-- onchange="console.log(event.target.files)" -->
 
-  <button type="submit" class="btn btn-primary btn-md" style="padding: 8px">
+  <button type="submit" class="btn btn-warning col-12 mt-2">
     Share Recipe
   </button>
+</form>
 
-  <button
-    type="button"
-    class="btn btn-danger"
-    (click)="showForm = false"
-    style="padding: 8px; margin-left: 5px"
+<!-- Toast message -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div
+    class="toast align-items-center text-bg-primary text-white border-0"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
   >
-    Cancel
-  </button>
-</form> -->
+    <div class="d-flex">
+      <div class="toast-body text-white">Recipe added successfully</div>
+      <button
+        type="button"
+        class="btn-close btn-close-white me-2 m-auto text-white"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+      ></button>
+    </div>
+  </div>
+</div>
