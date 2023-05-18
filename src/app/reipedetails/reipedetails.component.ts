@@ -11,7 +11,7 @@ export class ReipedetailsComponent implements OnInit {
   recipe: any;
   recipeId: any;
   comments: any;
-  userId: any = 2;
+  userId: any = 41;
   userName: any;
   likes: any;
 
@@ -46,11 +46,12 @@ export class ReipedetailsComponent implements OnInit {
     });
   }
 
-  addLike(likes: any, recipeId: any) {
-    likes = likes + 1;
-    this.recipeService.addLikeInDB(likes, recipeId).subscribe(
-      () => {
-        console.log('Like added successfully');
+  addLike(likes: any) {
+    this.likes = likes + 1;
+    this.recipe.likes = this.likes;
+    this.recipeService.addLikeInDB(this.recipe).subscribe(
+      (data: any) => {
+        console.log('Like added successfully ' + data);
       },
       (error) => {
         console.error('Error adding like:', error);

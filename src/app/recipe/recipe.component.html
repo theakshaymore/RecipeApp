@@ -1,6 +1,6 @@
 <div class="container mb-5">
   <button class="btn btn-warning mt-5" routerLink="/addrecipe">
-    Add Recipe
+    Add Recipe <i class="bi bi-plus-square ms-1"></i>
   </button>
   <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
     <div *ngFor="let r of recipe" class="col">
@@ -12,149 +12,30 @@
         />
         <div class="card-body d-flex flex-column justify-content-between">
           <div>
-            <h5 class="card-title mb-3">{{ r.name }}</h5>
-            <p class="card-text btn">
-              <i class="bi bi-heart text-danger">{{ r.likes }}</i>
+            <h5 class="card-title mb-1">{{ r.name }}</h5>
+            <p class="text-small text-start">
+              Preparation time: {{ r.preparationtime }}
             </p>
           </div>
-          <a
-            class="card-link btn btn-warning rounded-pill px-4 py-2 align-self-end"
-            (click)="viewRecipeDetails(r.recipeid)"
+          <div
+            class="d-flex align-items-center justify-content-between align-items-end mt-3"
           >
-            Read More
-          </a>
+            <div>
+              <a class="card-link btn btn-warning rounded-5 col-12 w-100">
+                {{ r.likes }}<i class="bi bi-hand-thumbs-up ms-1"></i>
+              </a>
+            </div>
+            <div>
+              <a
+                class="card-link btn btn-warning col-12 w-100"
+                (click)="viewRecipeDetails(r.recipeid)"
+              >
+                Read More
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<!-- <table class="table table-bordered table-condensed table-striped table-hover">
-  <thead>
-    <tr class="bg-primary">
-      <th>RecipeId</th>
-      <th>RecipeName</th>
-      <th>Ingredients</th>
-      <th>Description</th>
-      <th>PreparationTime</th>
-      <th>Images</th>
-      <th>Likes</th>
-      <th>UserId</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody class="bg-info">
-    <tr *ngFor="let r of recipe">
-      <td>{{ r.recipeid }}</td>
-      <td>{{ r.name }}</td>
-      <td>{{ r.ingredients }}</td>
-      <td>{{ r.description }}</td>
-      <td>{{ r.preparationtime }}</td>
-      <td>
-        {{ r.images }}
-        <input type="file" id="myFile" name="filename" />
-        <input type="submit" />
-      </td>
-      <td>
-        <button
-          [ngClass]="{ 'like-button': true, liked: likeState === 'liked' }"
-          class="btn btn-success"
-          (click)="incrementLike()"
-        >
-          <span class="glyphicon glyphicon-thumbs-up"></span>Like |
-          <span class="likes-counter">{{ noOfLikes }}</span>
-        </button>
-        <button
-          [ngClass]="{
-            'dislike-button': true,
-            disliked: likeState === 'disliked'
-          }"
-          class="btn btn-danger"
-          (click)="incrementDisLike()"
-        >
-          <span class="glyphicon glyphicon-thumbs-up"></span>Dislike |
-          <span class="dislikes-counter">{{ noOfDisLikes }}</span>
-        </button>
-      </td>
-      <td>{{ r.userid }}</td>
-      <td>
-        <button (click)="editRecipe(rec)" class="btn btn-success">
-          Update
-        </button>
-        <button (click)="delbyid(r.recipeid)" class="btn btn-danger">
-          Delete
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table> -->
-
-<!-- <form
-  *ngIf="recupd"
-  (submit)="updateRecipe()"
-  style="width: 50vw; margin: auto; margin-bottom: 10px; font-size: 14px"
->
-  <h2 style="text-align: center">Update Recipe</h2>
-  <label>RecipeId</label>
-  <input
-    [(ngModel)]="recupd.recipeid"
-    name="recipeid"
-    type="text"
-    class="form-control"
-  /><br />
-
-  <label>RecipeName</label>
-  <input
-    [(ngModel)]="recupd.name"
-    name="name"
-    type="text"
-    class="form-control"
-  /><br />
-
-  <label>Ingredients</label>
-  <input
-    [(ngModel)]="recupd.ingredients"
-    name="ingredients"
-    type="text"
-    style="height: 200px"
-    class="form-control"
-  /><br />
-
-  <label>Description</label>
-  <input
-    [(ngModel)]="recupd.description"
-    name="description"
-    type="text"
-    style="height: 200px"
-    class="form-control"
-  /><br />
-
-  <label>preparationTime</label>
-  <input
-    [(ngModel)]="rec.preparationtime"
-    name="preparationtime"
-    type="text"
-    class="form-control"
-  /><br />
-
-  <label>Images</label>
-  <input
-    [(ngModel)]="recupd.images"
-    name="images"
-    type="file"
-    class="form-control"
-    onchange="console.log(event.target.files)"
-  /><br />
-
-  <label>UserId</label>
-  <input
-    [(ngModel)]="recupd.userid"
-    name="userid"
-    type="text"
-    class="form-control"
-  /><br />
-
-  <button type="submit" class="btn btn-primary btn-md" style="padding: 8px">
-    Update Recipe
-  </button>
-</form> -->

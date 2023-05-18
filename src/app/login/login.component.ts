@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { RecipeService } from '../recipe.service';
 import { Router } from '@angular/router';
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-login',
@@ -33,24 +34,19 @@ export class LoginComponent implements OnInit {
     this.recipeService
       .getUserByEmailAndPasswordFromDB(formdata.email, formdata.password)
       .subscribe((data: any) => {
-        if (data && data.email === null && data.password === null) {
+        console.log(data);
+        if (data == null) {
           console.log('Invalid email and password');
           this.showToastMessage();
-        } else if (
-          data &&
-          data.email === formdata.email &&
-          data.password === formdata.password
-        ) {
+        } else if (data) {
+          console.log('success');
           this.recipeService.setUserId(data.userid);
           this.recipeService.setIsUserLoggedIn();
-          if (formdata.email == 'a' && formdata.password == 'a') {
+          if (data.privilege == 1) {
             this.router.navigate(['admin']);
           } else {
             this.router.navigate(['recipelist']);
           }
-        } else {
-          console.log('Invalid email and password');
-          this.showToastMessage();
         }
       });
   }

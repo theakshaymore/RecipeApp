@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Subject } from 'rxjs';
 
 export interface User {
   userid: any;
@@ -15,6 +16,7 @@ export interface User {
 export class RecipeService {
   private userId: any;
   isUserLoggedIn: boolean;
+  loginStatusChanged: Subject<void> = new Subject<void>();
 
   constructor(private httpclient: HttpClient) {
     this.isUserLoggedIn = false;
@@ -29,10 +31,15 @@ export class RecipeService {
   }
   setIsUserLoggedIn() {
     this.isUserLoggedIn = true;
+    this.notifyLoginStatusChange();
   }
 
   getIsUserLoggedIn() {
     return this.isUserLoggedIn;
+  }
+
+  notifyLoginStatusChange() {
+    this.loginStatusChanged.next();
   }
 
   //FOR USER
@@ -52,9 +59,14 @@ export class RecipeService {
     return this.httpclient.put('/app/user/list/', user);
   }
   getUserByEmailAndPasswordFromDB(email: any, password: any) {
-    return this.httpclient.get(
-      '/app/user/list/login/' + email + '/' + password
-    );
+    // return this.httpclient.get(
+    //   '/app/user/list/login/' + email + '/' + password
+    // );
+    const queryParams = new HttpParams()
+      .set('email', email)
+      .set('password', password);
+
+    return this.httpclient.get('/app/user/list/login', { params: queryParams });
   }
 
   getUserByIdFromDB(userId: any) {
@@ -90,9 +102,8 @@ export class RecipeService {
   search(name: any) {
     return this.httpclient.get('/app/recipe/list' + name);
   }
-  addLikeInDB(likes: any, recipeId: any) {
-    const payload = { likes: likes };
-    return this.httpclient.put(`/app/recipe/like/${recipeId}`, payload);
+  addLikeInDB(recipe: any) {
+    return this.httpclient.put('/app/recipe/save/', recipe);
   }
 
   //FOR COMMENT

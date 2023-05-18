@@ -27,8 +27,20 @@
           <a class="nav-link" routerLink="profile">Profile</a>
         </li>
       </ul>
-      <button class="btn btn-warning rounded-3 px-4 py-2" routerLink="login">
+      <button
+        class="btn btn-warning rounded-3 px-4 py-2"
+        *ngIf="login === true"
+        routerLink="login"
+      >
         Login/Register
+      </button>
+
+      <button
+        class="btn btn-warning rounded-3 px-4 py-2"
+        *ngIf="logout === true"
+        (click)="logoutUser()"
+      >
+        Logout
       </button>
     </div>
   </div>
