@@ -35,6 +35,15 @@ export class RegisterComponent implements OnInit {
     }, 5000);
   }
 
+  private showToastMessageError() {
+    const toastElement: HTMLElement =
+      this.elementRef.nativeElement.querySelector('#toasterr');
+    toastElement.classList.add('show');
+    setTimeout(() => {
+      toastElement.classList.remove('show');
+    }, 5000);
+  }
+
   save() {
     let bodyData = {
       username: this.username,
@@ -46,11 +55,15 @@ export class RegisterComponent implements OnInit {
     this.http
       .post('/app/user/list', bodyData, { responseType: 'text' })
       .subscribe((resultData: any) => {
-        // console.log(resultData);
-        this.showToastMessage();
-        setTimeout(() => {
-          this.router.navigate(['login']);
-        }, 3000);
+        console.log(resultData);
+        if (resultData.error) {
+          alert('Email already exist in DB');
+        } else {
+          this.showToastMessage();
+          setTimeout(() => {
+            this.router.navigate(['login']);
+          }, 3000);
+        }
       });
   }
 }
